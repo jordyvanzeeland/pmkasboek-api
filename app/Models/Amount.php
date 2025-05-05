@@ -21,7 +21,8 @@ class Amount extends Model
         'date',
         'description',
         'amount',
-        'type'
+        'type',
+        'booksaldo'
     ];
 
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("description");
             $table->float("amount");
             $table->integer("type");
+            $table->integer("booksaldo");
         });
     }
 
