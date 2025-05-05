@@ -33,7 +33,9 @@ class AmountTypesController extends Controller
         $type = Book::find($typeid);
 
         if(!$type){
-            return response()->json(['message' => 'Type not found'], 404);
+            return response()->json([
+                'message' => 'Type not found'
+            ], 404);
         }
 
         return response()->json($type, 200);
@@ -45,7 +47,10 @@ class AmountTypesController extends Controller
 
     public function insertType(Request $request){
         $newType = AmountType::create($request->all());
-        return response()->json(['message' => 'New type added', 'type' => $newType], 201);
+
+        return response()->json([
+            'message' => 'New type added', 'type' => $newType
+        ], 201);
     }
 
     /**
@@ -57,11 +62,16 @@ class AmountTypesController extends Controller
         $type = AmountType::find($typeid);
         
         if(!$typeid){
-            return response()->json(['message' => 'Type not found'], 404);
+            return response()->json([
+                'message' => 'Type not found'
+            ], 404);
         }
         
         $type->update($request->all());
-        return response()->json(['message' => 'Type updated', 'type' => $type], 200);
+        
+        return response()->json([
+            'message' => 'Type updated', 'type' => $type
+        ], 200);
     }
 
     /**
@@ -73,10 +83,15 @@ class AmountTypesController extends Controller
         $type = AmountType::find($typeid);
         
         if(!$typeid){
-            return response()->json(['message' => 'Type not found'], 404);
+            return response()->json([
+                'message' => 'Type not found'
+            ], 404);
         }
 
         $type->delete();
-        return response()->json(['message' => 'Type deleted'], 200);
+        
+        return response()->json([
+            'message' => 'Type deleted'
+        ], 200);
     }
 }

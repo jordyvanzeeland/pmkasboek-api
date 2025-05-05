@@ -51,6 +51,7 @@ class AmountsController extends Controller
         $request["userid"] = $user->id;
 
         $newAmount = Amount::create($request->all());
+        
         return response()->json([
             'message' => 'New amount added', 
             'amount' => $newAmount
@@ -75,6 +76,7 @@ class AmountsController extends Controller
         $request["userid"] = $user->id;
         
         $amount->update($request->all());
+
         return response()->json([
             'message' => 'Amount updated', 
             'amount' => $amount
@@ -96,6 +98,7 @@ class AmountsController extends Controller
         }
 
         $amount->delete();
+
         return response()->json([
             'message' => 'Amount deleted'
         ], 200);

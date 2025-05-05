@@ -51,6 +51,7 @@ class SaldosController extends Controller
         $request["userid"] = $user->id;
 
         $newSaldo = Saldo::create($request->all());
+
         return response()->json([
             'message' => 'New saldo added', 
             'saldo' => $newSaldo
@@ -75,6 +76,7 @@ class SaldosController extends Controller
         $request["userid"] = $user->id;
         
         $saldo->update($request->all());
+
         return response()->json([
             'message' => 'Saldo updated', 
             'saldo' => $saldo
@@ -96,6 +98,7 @@ class SaldosController extends Controller
         }
 
         $saldo->delete();
+        
         return response()->json([
             'message' => 'Saldo deleted'
         ], 200);
