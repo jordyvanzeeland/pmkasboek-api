@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('amounts', function (Blueprint $table) {
+        Schema::create('saldos', function (Blueprint $table) {
             $table->id();
-            $table->integer("userid");
-            $table->date("date");
-            $table->string("description");
-            $table->float("amount");
-            $table->integer("type");
+            $table->integer('userid');
+            $table->integer('bookyear');
+            $table->float('startsaldo');
         });
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('amounts');
+        Schema::dropIfExists('saldos');
     }
 };

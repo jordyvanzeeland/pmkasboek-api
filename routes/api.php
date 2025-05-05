@@ -27,6 +27,12 @@ Route::group([
     Route::post("amounts/insert", 'App\Http\Controllers\AmountsController@insertAmount');
     Route::put("amounts/{amount}/update", 'App\Http\Controllers\AmountsController@updateAmount');
     Route::delete("amounts/{amount}/delete", 'App\Http\Controllers\AmountsController@deleteAmount');
+
+    Route::get("saldos", 'App\Http\Controllers\SaldosController@getUserStartSaldo');
+    Route::get("saldos/{saldo}", 'App\Http\Controllers\SaldosController@getSaldo');
+    Route::post("saldos/insert", 'App\Http\Controllers\SaldosController@insertSaldo');
+    Route::put("saldos/{saldo}/update", 'App\Http\Controllers\SaldosController@updateSaldo');
+    Route::delete("saldos/{saldo}/delete", 'App\Http\Controllers\SaldosController@deleteSaldo');
 });
 
 
