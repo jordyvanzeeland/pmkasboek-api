@@ -21,7 +21,7 @@ class AmountsController extends Controller
 
      public function getAllAmountsOfUser(){
         $user = Auth::user();
-        $amounts = Amount::where('userid', $user->id)->get();
+        $amounts = Amount::with('type')->where('userid', $user->id)->get();
         return response()->json($amounts, 200);
     }
 
