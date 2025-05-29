@@ -19,9 +19,9 @@ class AmountsController extends Controller
      * Retrieve all amounts of userid.
      */
 
-     public function getAllAmountsOfUser(){
+     public function getAllAmountsOfUser(int $bookid){
         $user = Auth::user();
-        $amounts = Amount::with('type')->where('userid', $user->id)->get();
+        $amounts = Amount::with('type')->where('userid', $user->id)->where('booksaldo', $bookid)->get();
         return response()->json($amounts, 200);
     }
 
@@ -72,9 +72,6 @@ class AmountsController extends Controller
             ], 404);
         }
 
-        $user = Auth::user();
-        $request["userid"] = $user->id;
-        
         $amount->update($request->all());
 
         return response()->json([
