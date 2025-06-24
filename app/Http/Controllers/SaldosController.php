@@ -22,7 +22,8 @@ class SaldosController extends Controller
      public function getUserStartSaldo(){
         $user = Auth::user();
         $saldo = Saldo::where('userid', $user->id)->get();
-        return response()->json($saldo, 200);
+        $count = $saldo->count();
+        return response()->json(['count' => $count, 'books' => $saldo], 200);
     }
 
     /**

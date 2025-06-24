@@ -29,4 +29,8 @@ class Amount extends Model
         return $this->hasOne('App\Models\AmountType', 'id', 'type');
     }
 
+    public function saldo(){
+        return $this->hasOne('App\Models\Saldo', 'id', 'booksaldo');
+    }
+
 }

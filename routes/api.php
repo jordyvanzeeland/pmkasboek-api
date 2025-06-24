@@ -24,7 +24,8 @@ Route::group([
     Route::put("amounts/type/{type}/update", 'App\Http\Controllers\AmountTypesController@updateType');
     Route::delete("amounts/type/{type}/delete", 'App\Http\Controllers\AmountTypesController@deleteType');
 
-    Route::get("amounts/{bookid}", 'App\Http\Controllers\AmountsController@getAllAmountsOfUser');
+    Route::get("amounts", 'App\Http\Controllers\AmountsController@getAllAmountsOfUser');
+    Route::get("amounts/{bookid}", 'App\Http\Controllers\AmountsController@getAllAmountsOfUserBook');
     Route::get("amounts/{amount}", 'App\Http\Controllers\AmountsController@getAmount');
     Route::post("amounts/insert", 'App\Http\Controllers\AmountsController@insertAmount');
     Route::put("amounts/{amount}/update", 'App\Http\Controllers\AmountsController@updateAmount');

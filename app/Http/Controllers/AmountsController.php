@@ -16,12 +16,44 @@ class AmountsController extends Controller
     }
 
     /**
-     * Retrieve all amounts of userid.
+     * Retrieve all amounts of user.
      */
 
-     public function getAllAmountsOfUser(int $bookid){
+     public function getAllAmountsOfUser(Request $request){
         $user = Auth::user();
-        $amounts = Amount::with('type')->where('userid', $user->id)->where('booksaldo', $bookid)->get();
+        $limit = $request->header('limit');
+        $order = $request->header('order');
+        $orderasc = $request->header('orderasc');
+        $query = Amount::with(['type', 'saldo'])->where('userid', $user->id);
+
+        if (isset($order) && $order !== '' && $order !== 'undefined') {
+            $query->orderBy($order, $orderasc);
+        }
+        
+        if (isset($limit) && $limit !== '' && $limit !== 'undefined') {
+            $query->limit($limit);
+        }
+
+        $amounts = $query->get();
+        
+        return response()->json($amounts, 200);
+    }
+    
+    /**
+     * Retrieve all amounts of bookid.
+     */
+
+     public function getAllAmountsOfUserBook(Request $request, int $bookid){
+        $user = Auth::user();
+        $limit = $request->header('limit');
+        $query = Amount::with('type')->where('userid', $user->id)->where('booksaldo', $bookid);
+
+        if (isset($limit) && $limit !== '') {
+            $query->limit($limit);
+        }
+
+        $amounts = $query->get();
+        
         return response()->json($amounts, 200);
     }
 
