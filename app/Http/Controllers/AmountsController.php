@@ -44,9 +44,12 @@ class AmountsController extends Controller
      */
 
      public function getAllAmountsOfUserBook(Request $request, int $bookid){
+        $isAdmin = $request->header("isAdmin");
+        $userid = $request->header('userid');
+    
         $user = Auth::user();
         $limit = $request->header('limit');
-        $query = Amount::with('type')->where('userid', $user->id)->where('booksaldo', $bookid);
+        $query = Amount::with('type')->where('userid', $isAdmin ? $userid : $user->id)->where('booksaldo', $bookid);
 
         if (isset($limit) && $limit !== '') {
             $query->limit($limit);

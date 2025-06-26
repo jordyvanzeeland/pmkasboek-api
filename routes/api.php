@@ -16,6 +16,14 @@ Route::group([
 Route::post("register", 'App\Http\Controllers\UserController@registerUser');
 
 Route::group([
+    'middleware' => 'api',
+    'prefix' => 'admin'
+], function ($router) {
+    Route::get('customers', 'App\Http\Controllers\AdminController@getAllCustomers');
+    Route::get('customers/{customerid}', 'App\Http\Controllers\AdminController@getCustomerBooks');
+});
+
+Route::group([
     'middleware' => 'api'
 ], function ($router) {
     Route::get("amounts/types", 'App\Http\Controllers\AmountTypesController@getAllTypes');
