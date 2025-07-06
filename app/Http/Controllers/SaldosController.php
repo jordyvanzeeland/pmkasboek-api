@@ -55,7 +55,7 @@ class SaldosController extends Controller
 
         return response()->json([
             'message' => 'New saldo added', 
-            'saldo' => $newSaldo
+            'newbook' => $newSaldo
         ], 201);
     }
 
