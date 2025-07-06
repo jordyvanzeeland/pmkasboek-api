@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\roleMiddleware;
 
 Route::group([
     'middleware' => 'api',
@@ -16,7 +17,7 @@ Route::group([
 Route::post("register", 'App\Http\Controllers\UserController@registerUser');
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['api', roleMiddleware::class],
     'prefix' => 'admin'
 ], function ($router) {
     Route::get('customers', 'App\Http\Controllers\AdminController@getAllCustomers');
