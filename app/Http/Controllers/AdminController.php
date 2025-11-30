@@ -26,6 +26,22 @@ class AdminController extends Controller
         return response()->json($customers, 200);
     }
 
+    /**
+     * Retrieve customer by given customer ID.
+     */
+
+     public function getCustomerInfo(int $customerid){
+        $customer = User::find($customerid);
+
+        if(!$customer){
+            return response()->json([
+                'message' => 'Customer not found'
+            ], 404);
+        }
+
+        return response()->json($customer, 200);
+    }
+
      /**
      * Retrieve all books of customer.
      */
