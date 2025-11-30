@@ -22,6 +22,7 @@ Route::group([
 ], function ($router) {
     Route::get('customers', 'App\Http\Controllers\AdminController@getAllCustomers');
     Route::get('customers/{customerid}', 'App\Http\Controllers\AdminController@getCustomerBooks');
+    Route::put("amounts/{amount}/update/code", 'App\Http\Controllers\AdminController@updateAmountCode');
 });
 
 Route::group([

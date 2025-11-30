@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Amount;
 use App\Models\Saldo;
 use Illuminate\Http\Request;
 
@@ -32,5 +33,27 @@ class AdminController extends Controller
      public function getCustomerBooks(int $customerid){
         $customers = Saldo::where('userid', $customerid)->get();
         return response()->json($customers, 200);
+    }
+
+    /**
+     * Update code of amount of customer.
+     */
+
+    public function updateAmountCode(Request $request, int $amountid){
+        $amount = Amount::find($amountid);
+
+        if(!$amount){
+            return response()->json([
+                'message' => 'Amount not found'
+            ], 404);
+        }
+
+        $amount->code = $request->code;
+        $amount->save();
+
+        return response()->json([
+            'message' => 'Code of amount updated', 
+            'amount' => $amount
+        ], 200);
     }
 }
