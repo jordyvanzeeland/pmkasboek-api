@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'crypto_secret_key' => env('CRYPTO_SECRET_KEY'),
+    'crypto_secret_iv'  => env('CRYPTO_SECRET_IV'),
+
 ];
